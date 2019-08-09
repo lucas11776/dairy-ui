@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { DairyService } from '../shared/dairy.service';
+
 @Component({
   selector: 'app-dairy',
   templateUrl: './dairy.component.html',
@@ -7,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DairyComponent implements OnInit {
 
-  constructor() { }
+  constructor(private dairyServ: DairyService) { }
 
   ngOnInit() {
   }
