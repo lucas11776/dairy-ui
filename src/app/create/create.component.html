@@ -1,1 +1,20 @@
-<p>create works!</p>
+<h1>Write On Dairy</h1>
+<hr>
+<form [formGroup]="form" *ngIf="!response">
+  <h5>{{ form.value | json }}</h5>
+  <fieldset>
+    <label for="name">My Name</label>
+    <input formControlName="name">
+  </fieldset>
+  <fieldset>
+    <label for="name">Title</label>
+    <input formControlName="title">
+  </fieldset>
+  <fieldset>
+    <label for="name">Event (<small>story</small>)</label>
+    <textarea formControlName="text" cols="12" rows="12"></textarea>
+  </fieldset>
+  <fieldset *ngIf="form.valid">
+    <button type="button" (click)="create()">Add Dairy Article</button>
+  </fieldset>
+</form>

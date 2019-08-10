@@ -15,7 +15,7 @@ export class DairyService {
   /**
    * Get http-error-response message
    */
-  httpError(error: HttpErrorResponse) {
+  private httpError(error: HttpErrorResponse) {
     return throwError(error.message);
   }
 
@@ -24,7 +24,7 @@ export class DairyService {
    */
   get(): Observable<Array<Dairy>> {
     return this.http.get<Array<Dairy>>('/api/').pipe(
-      retry(2)
+      retry(2), catchError(this.httpError)
     );
   }
 
@@ -33,14 +33,16 @@ export class DairyService {
    */
   create(record: Article): Observable<CreateResponse> {
     return this.http.post<CreateResponse>('/api/create', record).pipe(
-      retry(2)
+      retry(2), catchError(this.httpError)
     );
   }
 
   /**
    * Delete dairy record on databse
    */
-  delete(id: number) {
-    // return this.http.post<DeleteResponse>("/api/delete/${id}");
+  delete(ID: number) {
+    return this.http.post<DeleteResponse>('/api/delete', {id: ID}).pipe(
+      retry(2), catchError(this.httpError)
+    );
   }
 }
