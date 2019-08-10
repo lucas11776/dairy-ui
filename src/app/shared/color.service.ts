@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
@@ -6,7 +6,10 @@ import { Injectable } from '@angular/core';
 export class ColorService {
 
   backgroundColor: string;
-  color = [{color: '#428bca'}, {color: 'yellow'}, {color: 'limegreen'}, {color: 'hotpink'}];
+  colors = [{color: '#428bca'}, {color: 'yellow'}, {color: 'limegreen'}, {color: 'hotpink'}];
 
-  constructor() {}
+  constructor() {
+    this.backgroundColor = localStorage.getItem('color') ? localStorage.getItem('color') : this.colors[0].color;
+  }
+
 }

@@ -10,6 +10,7 @@ import { CreateComponent } from './create/create.component';
 import { NavbarComponent } from './template/navbar/navbar.component';
 import { ArticleComponent } from './components/article/article.component';
 import { FooterComponent } from './template/footer/footer.component';
+import { SettingsComponent } from './settings/settings.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { FooterComponent } from './template/footer/footer.component';
     CreateComponent,
     NavbarComponent,
     ArticleComponent,
-    FooterComponent
+    FooterComponent,
+    SettingsComponent
   ],
   imports: [
     BrowserModule,
