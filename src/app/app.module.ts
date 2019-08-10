@@ -8,13 +8,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { DairyComponent } from './dairy/dairy.component';
 import { CreateComponent } from './create/create.component';
 import { NavbarComponent } from './template/navbar/navbar.component';
+import { ArticleComponent } from './components/article/article.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DairyComponent,
     CreateComponent,
-    NavbarComponent
+    NavbarComponent,
+    ArticleComponent
   ],
   imports: [
     BrowserModule,

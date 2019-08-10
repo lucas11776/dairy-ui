@@ -11,14 +11,14 @@ import { DairyService } from '../shared/dairy.service';
 })
 export class DairyComponent implements OnInit {
 
-  articles: Observable<Array<Dairy>>;
+  articles$: Observable<Array<Dairy>>;
   filter: string;
   error: string;
 
   constructor(private dairyServ: DairyService) { }
 
   ngOnInit() {
-    this.articles = this.dairyServ.get();
+    this.articles$ = this.dairyServ.get();
   }
 
 }
