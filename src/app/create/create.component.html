@@ -8,21 +8,50 @@
 <hr><br/><br/>
 
 <div class="form-container">
+  <!-- Form -->
   <form [formGroup]="form">
+    <!-- Alert -->
+    <div [ngClass]="{'alert alert-dismissible fade in': true, 'alert-success': response?.status, 'alert-danger': !response?.status}" role="alert" *ngIf="response">
+      <button type="button" class="close" (click)="closeResponse()">
+        <span aria-hidden="true">×</span>
+      </button>
+      <strong>{{ response?.data.status ? 'Succces' : 'Fail' }}: </strong> {{ response?.message }}
+      <p *ngIf="response?.data.name"><small>* {{ response?.data.name }} </small></p>
+      <p *ngIf="response?.data.title"><small>* {{ response?.data.title }} </small></p>
+      <p *ngIf="response?.data.text"><small>* {{ response?.data.text }} </small></p>
+    </div>
     <div class="row">
+      <!-- Name -->
       <div class="col-lg-6 form-group">
         <label for="name">Fullname</label>
-        <input class="form-control">
+        <input class="form-control" formControlName="name" [ngClass]="{'border-danger': form.controls.name.invalid && form.controls.name.dirty}">
+        <p class="text-danger" *ngIf="form.controls.name.dirty">
+          <span *ngIf="form.controls.name.errors?.required">Your name is required.</span>
+          <span *ngIf="form.controls.name.errors?.minlength">Name must have minimum length of {{ form.controls.name.errors?.minlength.requiredLength }}.</span>
+          <span *ngIf="form.controls.name.errors?.maxlength">Name must have minimum length of {{ form.controls.name.errors?.maxlength.requiredLength }}.</span>
+        </p>
       </div>
+      <!-- Titles -->
       <div class="col-lg-6 form-group">
         <label for="name">Title</label>
-        <input class="form-control">
+        <input id="title" class="form-control" formControlName="title" [ngClass]="{'border-danger': form.controls.title.invalid && form.controls.title.dirty}">
+        <p class="text-danger" *ngIf="form.controls.title.dirty">
+          <span *ngIf="form.controls.title.errors?.required">Your title is required.</span>
+          <span *ngIf="form.controls.title.errors?.minlength">Title must have minimum length of {{ form.controls.title.errors?.minlength.requiredLength }}.</span>
+          <span *ngIf="form.controls.title.errors?.maxlength">Title must have minimum length of {{ form.controls.title.errors?.maxlength.requiredLength }}.</span>
+        </p>
       </div>
+      <!-- Text -->
       <div class="col-lg-12 form-group">
         <label for="text">Text</label>
-        <textarea class="form-control" rows="8"></textarea>    
+        <textarea class="form-control" rows="8" formControlName="text" [ngClass]="{'border-danger': form.controls.text.invalid && form.controls.text.dirty}"></textarea>
+        <p class="text-danger" *ngIf="form.controls.text.dirty">
+          <span *ngIf="form.controls.text.errors?.required">Your text is required.</span>
+          <span *ngIf="form.controls.text.errors?.minlength">Text must have minimum length of {{ form.controls.text.errors?.minlength.requiredLength }}.</span>
+          <span *ngIf="form.controls.text.errors?.maxlength">Text must have minimum length of {{ form.controls.text.errors?.maxlength.requiredLength }}.</span>
+        </p>
       </div>
-      <div class="col-lg-12 form-group">
+      <div class="col-lg-12 form-group" *ngIf="form.valid" (click)="create()">
         <button class="btn btn-lg btn-success">Save Story</button>
       </div>
     </div>

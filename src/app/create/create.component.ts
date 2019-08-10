@@ -26,6 +26,7 @@ export class CreateComponent implements OnInit {
       title: ['', [ Validators.required, Validators.minLength(3), Validators.maxLength(100) ]],
       text: ['', [ Validators.required, Validators.minLength(20), Validators.maxLength(500) ]]
     });
+    console.log(this.form);
   }
 
   /**
@@ -33,7 +34,10 @@ export class CreateComponent implements OnInit {
    */
   create() {
     this.dairyServ.create(this.form.value).subscribe(
-      response => this.response = response,
+      response => {
+        this.response = response;
+        this.form.reset();
+      },
       error    => this.error = error
     );
   }
@@ -41,7 +45,7 @@ export class CreateComponent implements OnInit {
   /**
    * Clear create response
    */
-  clearResponse() {
+  closeResponse() {
     this.response = null;
   }
 

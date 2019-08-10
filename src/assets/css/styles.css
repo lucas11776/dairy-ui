@@ -30,7 +30,9 @@ h6, .h6 {
 /*
  * Border danger
  */
-.border-danger {
+.border-danger,
+.border-dange:focus,
+.border-dange:hover{
   border-color: #a9444a;
 }
 

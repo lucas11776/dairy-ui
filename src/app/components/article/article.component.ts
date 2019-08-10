@@ -23,7 +23,8 @@ export class ArticleComponent implements OnInit {
   constructor(
     private elem: ElementRef,
     private formBulider: FormBuilder,
-    private dairyServ: DairyService) { }
+    private dairyServ: DairyService
+  ) { }
 
   /**
    * Setup form validation
@@ -47,7 +48,7 @@ export class ArticleComponent implements OnInit {
         }
         this.updateResponse = response;
       },
-      error => console.log(error)
+      error => console.warn(error)
     );
   }
 
@@ -58,7 +59,7 @@ export class ArticleComponent implements OnInit {
     this.dairyServ.delete(this.article.id).subscribe(
       response => {
         if (response.status) {
-          // close 
+          // close article modal
           $(this.elem.nativeElement).find('#modelArticleDelete').modal('hide');
           this.article = null;
         }

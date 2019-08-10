@@ -32,16 +32,33 @@
         </div>
         <!-- Form -->
         <form [formGroup]="form">
+          <!-- Title -->
           <fieldset>
             <label for="title">Title</label>
-            <input id="title" class="form-control" formControlName="title">
+            <input id="title" class="form-control" formControlName="title" [ngClass]="{'border-danger': form.controls.title.invalid && form.controls.title.dirty}">
+            <p class="text-danger" *ngIf="form.controls.title.dirty">
+              <small>
+                <span *ngIf="form.controls.title.errors?.required">Your title is required.</span>
+                <span *ngIf="form.controls.title.errors?.minlength">Title must have minimum length of {{ form.controls.title.errors?.minlength.requiredLength }}.</span>
+                <span *ngIf="form.controls.title.errors?.maxlength">Title must have minimum length of {{ form.controls.title.errors?.maxlength.requiredLength }}.</span>
+              </small>
+            </p>
           </fieldset>
+          <!-- Text -->
           <fieldset>
             <label for="text">Text</label>
-            <textarea id="text" class="form-control" rows="8" formControlName="text"></textarea>
+            <textarea id="text" class="form-control" rows="8" formControlName="text" [ngClass]="{'border-danger': form.controls.text.invalid && form.controls.text.dirty}"></textarea>
+            <p class="text-danger" *ngIf="form.controls.text.dirty">
+              <small>
+                <span *ngIf="form.controls.text.errors?.required">Your text is required.</span>
+                <span *ngIf="form.controls.text.errors?.minlength">Text must have minimum length of {{ form.controls.text.errors?.minlength.requiredLength }}.</span>
+                <span *ngIf="form.controls.text.errors?.maxlength">Text must have minimum length of {{ form.controls.text.errors?.maxlength.requiredLength }}.</span>
+              </small>
+            </p>
           </fieldset>
         </form>
       </div>
+      <!-- Btn -->
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" (click)="update()" *ngIf="form.valid">Save changes</button>
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -62,6 +79,7 @@
         <p><strong class="text-danger">Delete Conformation</strong></p>
         <small class="text-muted">Title: {{ article.title }}</small>
       </div>
+      <!-- Btn -->
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" (click)="delete()">Delete</button>
         <button type="button" class="btn btn-" data-dismiss="modal">Cancel</button>
