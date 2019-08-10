@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
 import { Dairy } from '../models/dairy';
@@ -10,7 +11,9 @@ import { DairyService } from '../shared/dairy.service';
   styleUrls: ['./dairy.component.css']
 })
 export class DairyComponent implements OnInit {
-  limit = 5;
+
+  total: number;
+  limit = 2;
   articles$: Observable<Array<Dairy>>;
   filter: string;
   error: string;
@@ -18,11 +21,16 @@ export class DairyComponent implements OnInit {
   constructor(private dairyServ: DairyService) { }
 
   ngOnInit() {
-    this.articles$ = this.dairyServ.get(this.limit);
+    this.articles$ = this.dairyServ.get(this.limit).pipe(
+      map(response => {
+        this.total = response.total;
+        return response.articles;
+      })
+    );
   }
 
   loadMore() {
-    this.limit += 5;
+    this.limit += 2;
     this.ngOnInit(); // get dairy articles
   }
 

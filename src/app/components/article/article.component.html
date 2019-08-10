@@ -1,5 +1,5 @@
 <!-- Dairy Post -->
-<div class="dairy-post">
+<div class="dairy-post" *ngIf="article">
   <h2 class="dairy-post-title">
     {{ article.title }}
     <sup><button class="btn btn-link" (click)="openUpdateModel()"><span class="fas fa-edit text-info"></span></button></sup>
@@ -12,7 +12,7 @@
 </div>
 
 <!-- Edit Article Model -->
-<div class="modal fade" id="modelArticleUpdate" tabindex="-1" role="dialog">
+<div class="modal fade" id="modelArticleUpdate" tabindex="-1" role="dialog" *ngIf="article">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -20,6 +20,17 @@
         <h4 class="modal-title">Updated Dairy Article</h4>
       </div>
       <div class="modal-body">
+        <!-- Alert Box -->
+        <div class="alert alert-{{ updateResponse?.status ? 'success' : 'danger' }} alert-dismissible fade in" role="alert" *ngIf="updateResponse">
+          <button type="button" class="close" (click)="closeUpdatedResponse()">
+            <span aria-hidden="true">×</span>
+          </button>
+          <strong>{{ updateResponse?.status ? 'succcess' : 'Fail' }}: </strong> {{ updateResponse?.message }}
+          <p *ngIf="updateResponse?.data.id"><small>* {{ updateResponse?.data.id }}</small></p>
+          <p *ngIf="updateResponse?.data.title"><small>* {{ updateResponse?.data.title }}</small></p>
+          <p *ngIf="updateResponse?.data.text"><small>* {{ updateResponse?.data.text }}</small></p>
+        </div>
+        <!-- Form -->
         <form [formGroup]="form">
           <fieldset>
             <label for="title">Title</label>
@@ -32,15 +43,15 @@
         </form>
       </div>
       <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="update()" *ngIf="form.valid">Save changes</button>
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" (click)="update()">Save changes</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
 <!-- Edit Article Model -->
-<div class="modal fade" id="modelArticleDelete" tabindex="-1" role="dialog">
+<div class="modal fade" id="modelArticleDelete" tabindex="-1" role="dialog" *ngIf="article">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
