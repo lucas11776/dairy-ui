@@ -3,7 +3,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { retry, catchError } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
 
-import { Dairy, Article, Response } from '../models/dairy';
+import { Dairy, Article, Response, DeleteResponse } from '../models/dairy';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +12,9 @@ export class DairyService {
 
   constructor(private http: HttpClient) { }
 
+  /**
+   * Get http-error-response message
+   */
   httpError(error: HttpErrorResponse) {
     return throwError(error.message);
   }
@@ -28,13 +31,16 @@ export class DairyService {
   /**
    * Insert dairy record/s to database
    */
-  create(record: Article): Observable<Response> {
-    return this.http.post<Response>('/api/create', record).pipe(
+  create(record: Article): Observable<CreateResponse> {
+    return this.http.post<CreateResponse>('/api/create', record).pipe(
       retry(2)
     );
   }
 
   /**
-   * 
+   * Delete dairy record on databse
    */
+  delete(id: number) {
+    return this.http.post<DeleteResponse>("/api/delete/${id}");
+  }
 }

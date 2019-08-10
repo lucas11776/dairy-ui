@@ -1,1 +1,5 @@
-<p>dairy works!</p>
+<ul>
+  <li *ngFor="let article of articles | async">
+    #ID {{ article.id }}
+  </li>
+</ul>

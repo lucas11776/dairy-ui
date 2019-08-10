@@ -14,13 +14,13 @@ export interface Dairy {
   text: string;
 }
 
-export interface Response {
-  stutas: boolean;
-  data: {
-    message: string;
-    name: string;
-    title: string;
-    emotion: string;
-    text: string;
-  }
+export interface InsertResponse {
+  status: boolean;
+  message: string;
+  errors: Article;
+}
+
+export interface DeleteResponse {
+  status: boolean;
+  message: string;
 }
