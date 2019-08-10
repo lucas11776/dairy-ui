@@ -1,5 +1,5 @@
 <ul>
-  <li *ngFor="let article of articles | async">
-    #ID {{ article.id }}
+  <li *ngFor="let article of (articles | async)">
+    #ID {{ article.id }} {{ article.name }}
   </li>
 </ul>

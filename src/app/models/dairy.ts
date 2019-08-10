@@ -14,7 +14,7 @@ export interface Dairy {
   text: string;
 }
 
-export interface InsertResponse {
+export interface CreateResponse {
   status: boolean;
   message: string;
   errors: Article;

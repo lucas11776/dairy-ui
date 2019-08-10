@@ -3,7 +3,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { retry, catchError } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
 
-import { Dairy, Article, Response, DeleteResponse } from '../models/dairy';
+import { Dairy, Article, CreateResponse, DeleteResponse} from '../models/dairy';
 
 @Injectable({
   providedIn: 'root'
@@ -41,6 +41,6 @@ export class DairyService {
    * Delete dairy record on databse
    */
   delete(id: number) {
-    return this.http.post<DeleteResponse>("/api/delete/${id}");
+    // return this.http.post<DeleteResponse>("/api/delete/${id}");
   }
 }
