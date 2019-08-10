@@ -28,6 +28,13 @@ h6, .h6 {
 }
 
 /*
+ * Border danger
+ */
+.border-danger {
+  border-color:  #a9444;
+}
+
+/*
  * Masthead for nav
  */
 .dairy-masthead {
@@ -148,17 +155,15 @@ h6, .h6 {
   color: #999;
 }
 
-
 /*
  * Footer
  */
-
 .dairy-footer {
   padding: 40px 0;
   color: #999;
   text-align: center;
-  background-color: #f9f9f9;
-  border-top: 1px solid #e5e5e5;
+  background-color: #fff;
+  border-top: 2px solid #e5e5e5;
 }
 .dairy-footer p:last-child {
   margin-bottom: 0;
