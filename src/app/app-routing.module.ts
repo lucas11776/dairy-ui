@@ -5,8 +5,10 @@ import { DairyComponent } from './dairy/dairy.component';
 import { CreateComponent } from './create/create.component';
 
 const ROUTES: Routes = [
-  { path: '', component:  DairyComponent},
-  { path: 'create', component: CreateComponent}
+  { path: 'home', component:  DairyComponent},
+  { path: 'create', component: CreateComponent},
+  { path: '', redirectTo: '/home', pathMatch: 'full'},
+  { path: '**', redirectTo: '/home', pathMatch: 'full' }
 ];
 
 @NgModule({
