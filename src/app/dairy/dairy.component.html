@@ -11,9 +11,11 @@
 <div class="row">
   <div class="col-lg-12 dairy-main">
     <div *ngIf="articles$ | async as articles">
-      <app-article *ngFor="let article of articles.splice(0,4)" [article]="article"></app-article>
+      <app-article *ngFor="let article of articles" [article]="article"></app-article>
       <ul class="pager">
-        <li><a href="#">More</a></li>
+        <li>
+          <button type="button" class="btn" (click)="loadMore()">More</button>
+        </li>
       </ul>
     </div>
   </div>

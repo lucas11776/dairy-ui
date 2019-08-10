@@ -22,8 +22,8 @@ export class DairyService {
   /**
    * Get dairy record/s in database
    */
-  get(): Observable<Array<Dairy>> {
-    return this.http.get<Array<Dairy>>('/api/').pipe(
+  get(limit: number = 10): Observable<Array<Dairy>> {
+    return this.http.get<Array<Dairy>>('/api/?limit=' + limit).pipe(
       retry(2), catchError(this.httpError)
     );
   }

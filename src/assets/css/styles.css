@@ -31,7 +31,7 @@ h6, .h6 {
  * Border danger
  */
 .border-danger {
-  border-color:  #a9444;
+  border-color: #a9444a;
 }
 
 /*
@@ -131,11 +131,14 @@ h6, .h6 {
   text-align: left;
   text-align: center;
 }
-.pager > li > a {
+.pager > li > button {
   width: 140px;
   padding: 10px 20px;
   text-align: center;
   border-radius: 30px;
+  color: #333;
+  background-color: #fff;
+  border: 2px solid #999;
 }
 
 

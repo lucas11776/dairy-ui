@@ -10,7 +10,7 @@ import { DairyService } from '../shared/dairy.service';
   styleUrls: ['./dairy.component.css']
 })
 export class DairyComponent implements OnInit {
-
+  limit = 5;
   articles$: Observable<Array<Dairy>>;
   filter: string;
   error: string;
@@ -18,7 +18,12 @@ export class DairyComponent implements OnInit {
   constructor(private dairyServ: DairyService) { }
 
   ngOnInit() {
-    this.articles$ = this.dairyServ.get();
+    this.articles$ = this.dairyServ.get(this.limit);
+  }
+
+  loadMore() {
+    this.limit += 5;
+    this.ngOnInit(); // get dairy articles
   }
 
 }
