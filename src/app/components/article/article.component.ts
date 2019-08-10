@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, ElementRef } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
-import { Dairy, UpdateResponse } from '../../models/dairy';
+import { Dairy, UpdateResponse, DeleteResponse } from '../../models/dairy';
 import { DairyService } from '../../shared/dairy.service';
 
 // declere (scope)
@@ -17,6 +17,7 @@ export class ArticleComponent implements OnInit {
   @Input() article: Dairy;
   form: FormGroup;
   updateResponse: UpdateResponse;
+  deleteResponse: DeleteResponse;
   deleteError: string;
 
   constructor(
@@ -24,6 +25,9 @@ export class ArticleComponent implements OnInit {
     private formBulider: FormBuilder,
     private dairyServ: DairyService) { }
 
+  /**
+   * Setup form validation
+   */
   ngOnInit() {
     this.form = this.formBulider.group({
       id: [this.article.id],
@@ -32,6 +36,9 @@ export class ArticleComponent implements OnInit {
     });
   }
 
+  /**
+   * Update articles
+   */
   update() {
     this.dairyServ.update(this.form.value).subscribe(
       response => {
@@ -44,16 +51,40 @@ export class ArticleComponent implements OnInit {
     );
   }
 
-  delete() { }
+  /**
+   * Delete article
+   */
+  delete() {
+    this.dairyServ.delete(this.article.id).subscribe(
+      response => {
+        if (response.status) {
+          // close 
+          $(this.elem.nativeElement).find('#modelArticleDelete').modal('hide');
+          this.article = null;
+        }
+        this.deleteResponse = response;
+      },
+      error => console.warn(error)
+    );
+  }
 
+  /**
+   * Open update article modal
+   */
   openUpdateModel() {
     $(this.elem.nativeElement).find('#modelArticleUpdate').modal('show');
   }
 
+  /**
+   * Open delete article modal
+   */
   openDeleteModel() {
     $(this.elem.nativeElement).find('#modelArticleDelete').modal('show');
   }
 
+  /**
+   * Close update response alert box
+   */
   closeUpdatedResponse() {
     this.updateResponse = null;
   }
