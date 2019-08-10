@@ -7,12 +7,14 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { DairyComponent } from './dairy/dairy.component';
 import { CreateComponent } from './create/create.component';
+import { NavbarComponent } from './template/navbar/navbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DairyComponent,
-    CreateComponent
+    CreateComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
