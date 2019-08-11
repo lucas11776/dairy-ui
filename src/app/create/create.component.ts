@@ -14,6 +14,7 @@ export class CreateComponent implements OnInit {
   form: FormGroup;
   response: CreateResponse;
   error: string;
+  loading: boolean;
 
   constructor(private formBuilder: FormBuilder, private dairyServ: DairyService) { }
 
@@ -33,12 +34,17 @@ export class CreateComponent implements OnInit {
    * Create new dairy article
    */
   create() {
+    this.loading = false;
     this.dairyServ.create(this.form.value).subscribe(
       response => {
+        this.loading = false;
         this.response = response;
         this.form.reset();
       },
-      error    => this.error = error
+      error => {
+        this.loading = false;
+        this.error = error;
+      }
     );
   }
 

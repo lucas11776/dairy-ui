@@ -17,6 +17,9 @@ export class SettingsComponent implements OnInit {
     this.colors = this.colorServ.colors;
   }
 
+  /**
+   * Change appliction color
+   */
   changeColor(color: string) {
     this.colorServ.change(color);
   }

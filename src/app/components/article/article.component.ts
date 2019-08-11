@@ -4,7 +4,9 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Dairy, UpdateResponse, DeleteResponse } from '../../models/dairy';
 import { DairyService } from '../../shared/dairy.service';
 
-// declere (scope)
+/*
+  Declear (scope)
+*/
 declare var $: any;
 
 @Component({
@@ -13,12 +15,25 @@ declare var $: any;
   styleUrls: ['./article.component.css']
 })
 export class ArticleComponent implements OnInit {
-
+  /**
+   * Single article
+   */
   @Input() article: Dairy;
+
+  /**
+   * Update aricle form
+   */
   form: FormGroup;
+
+  /**
+   * Update article reponse
+   */
   updateResponse: UpdateResponse;
+
+  /**
+   * Delete aricle response
+   */
   deleteResponse: DeleteResponse;
-  deleteError: string;
 
   constructor(
     private elem: ElementRef,
@@ -44,7 +59,8 @@ export class ArticleComponent implements OnInit {
     this.dairyServ.update(this.form.value).subscribe(
       response => {
         if (response.status) {
-          this.article = this.form.value;
+          this.article.title = this.form.value.title;
+          this.article.text = this.form.value.text;
         }
         this.updateResponse = response;
       },

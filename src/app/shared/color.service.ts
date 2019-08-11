@@ -19,6 +19,9 @@ export class ColorService {
     setInterval(() => this.color.next(localStorage.getItem('color')), 100);
   }
 
+  /**
+   * Change global
+   */
   change(color: string) {
     localStorage.setItem('color', color);
     this.color.next(color);

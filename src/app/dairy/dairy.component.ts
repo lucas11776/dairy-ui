@@ -16,7 +16,7 @@ export class DairyComponent implements OnInit {
   filter: string;
   error: string;
   total: number;
-  limit = 2;
+  limit = 4;
 
   constructor(private dairyServ: DairyService) { }
 
@@ -37,7 +37,7 @@ export class DairyComponent implements OnInit {
    * Load more articles
    */
   loadMore() {
-    this.limit += 2;
+    this.limit += 4;
     this.ngOnInit(); // get dairy articles
   }
 

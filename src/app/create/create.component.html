@@ -51,7 +51,7 @@
           <span *ngIf="form.controls.text.errors?.maxlength">Text must have minimum length of {{ form.controls.text.errors?.maxlength.requiredLength }}.</span>
         </p>
       </div>
-      <div class="col-lg-12 form-group" *ngIf="form.valid" (click)="create()">
+      <div class="col-lg-12 form-group" *ngIf="form.valid && !loading" (click)="create()">
         <button class="btn btn-lg btn-success">Save Story</button>
       </div>
     </div>
