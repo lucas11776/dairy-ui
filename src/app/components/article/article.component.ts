@@ -35,6 +35,11 @@ export class ArticleComponent implements OnInit {
    */
   deleteResponse: DeleteResponse;
 
+  /**
+   * Ajax request load status
+   */
+  loading: boolean;
+
   constructor(
     private elem: ElementRef,
     private formBulider: FormBuilder,
@@ -56,15 +61,21 @@ export class ArticleComponent implements OnInit {
    * Update articles
    */
   update() {
-    this.dairyServ.update(this.form.value).subscribe(
+    this.loading = true;
+    const req = this.dairyServ.update(this.form.value).subscribe(
       response => {
         if (response.status) {
           this.article.title = this.form.value.title;
           this.article.text = this.form.value.text;
         }
         this.updateResponse = response;
+        this.loading = false;
+        req.unsubscribe();
       },
-      error => console.warn(error)
+      error => {
+        console.warn(error);
+        this.loading = false;
+      }
     );
   }
 
@@ -72,7 +83,8 @@ export class ArticleComponent implements OnInit {
    * Delete article
    */
   delete() {
-    this.dairyServ.delete(this.article.id).subscribe(
+    this.loading = true;
+    const req = this.dairyServ.delete(this.article.id).subscribe(
       response => {
         if (response.status) {
           // close article modal
@@ -80,8 +92,13 @@ export class ArticleComponent implements OnInit {
           this.article = null;
         }
         this.deleteResponse = response;
+        this.loading = false;
+        req.unsubscribe();
       },
-      error => console.warn(error)
+      error => {
+        console.warn(error);
+        this.loading = false;
+      }
     );
   }
 

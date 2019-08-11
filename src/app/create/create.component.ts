@@ -27,19 +27,19 @@ export class CreateComponent implements OnInit {
       title: ['', [ Validators.required, Validators.minLength(3), Validators.maxLength(100) ]],
       text: ['', [ Validators.required, Validators.minLength(20), Validators.maxLength(500) ]]
     });
-    console.log(this.form);
   }
 
   /**
    * Create new dairy article
    */
   create() {
-    this.loading = false;
-    this.dairyServ.create(this.form.value).subscribe(
+    this.loading = true;
+    const req = this.dairyServ.create(this.form.value).subscribe(
       response => {
         this.loading = false;
         this.response = response;
         this.form.reset();
+        req.unsubscribe();
       },
       error => {
         this.loading = false;
