@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { map } from 'rxjs/operators';
+import { map, delay } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
 import { Dairy } from '../models/dairy';
@@ -28,7 +28,8 @@ export class DairyComponent implements OnInit {
       map(response => {
         this.total = response.total;
         return response.articles;
-      })
+      }),
+      delay(2000)
     );
   }
 
