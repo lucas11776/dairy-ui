@@ -11,9 +11,24 @@ import { DairyService } from '../shared/dairy.service';
 })
 export class CreateComponent implements OnInit {
 
+  /**
+   * Form Group
+   */
   form: FormGroup;
+
+  /**
+   * Create artcle response
+   */
   response: CreateResponse;
+
+  /**
+   * Request error
+   */
   error: string;
+
+  /**
+   * Ajax load state
+   */
   loading: boolean;
 
   constructor(private formBuilder: FormBuilder, private dairyServ: DairyService) { }
