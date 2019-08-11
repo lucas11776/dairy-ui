@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Subject } from 'rxjs';
+
+import { ColorService } from '../../shared/color.service';
 
 @Component({
   selector: 'app-navbar',
@@ -7,9 +10,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
+  color: string;
+
+  constructor(private colorServ: ColorService) { }
 
   ngOnInit() {
+    this.colorServ.color.subscribe(color => this.color = color);
   }
 
 }

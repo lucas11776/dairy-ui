@@ -9,7 +9,7 @@ import { ColorService } from '../shared/color.service';
 })
 export class SettingsComponent implements OnInit {
 
-  colors;
+  colors: Array<{color: string}>;
 
   constructor(private colorServ: ColorService) { }
 
@@ -18,7 +18,7 @@ export class SettingsComponent implements OnInit {
   }
 
   changeColor(color: string) {
-    this
+    this.colorServ.change(color);
   }
 
 }

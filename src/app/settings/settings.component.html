@@ -6,7 +6,7 @@
 <!-- Break Line -->
 <hr><br><br>
 
-<div class="row">
+<div class="row color-container">
   <div class="col-sm-6 item-color" *ngFor="let item of colors" (click)="changeColor(item.color)">
     <div [ngStyle]="{'background-color': item.color}"></div>
   </div>

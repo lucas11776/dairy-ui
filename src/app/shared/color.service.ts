@@ -1,15 +1,26 @@
 import { Injectable, OnInit } from '@angular/core';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ColorService {
 
-  backgroundColor: string;
-  colors = [{color: '#428bca'}, {color: 'yellow'}, {color: 'limegreen'}, {color: 'hotpink'}];
+  color: Subject<string>;
+  colors = [
+    {color: '#428bca'},
+    {color: 'gold'},
+    {color: 'limegreen'},
+    {color: 'hotpink'}
+  ];
 
   constructor() {
-    this.backgroundColor = localStorage.getItem('color') ? localStorage.getItem('color') : this.colors[0].color;
+    this.color = new Subject<string>();
+    setInterval(() => this.color.next(localStorage.getItem('color')), 100);
   }
 
+  change(color: string) {
+    localStorage.setItem('color', color);
+    this.color.next(color);
+  }
 }

@@ -1,5 +1,13 @@
+.color-container {
+  padding-top: 5vh;
+  padding-bottom: 10vh;
+}
+
 .item-color {
   height: 250px;
+  margin-bottom: 20px;
+  border-radius: 100%;
+  overflow: hidden;
 }
 
 .item-color div {
