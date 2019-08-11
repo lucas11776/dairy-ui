@@ -12,10 +12,24 @@ import { DairyService } from '../shared/dairy.service';
 })
 export class DairyComponent implements OnInit {
 
+  /**
+   * Artcles Response
+   */
   articles$: Observable<Array<Dairy>>;
-  filter: string;
+
+  /**
+   * Response Error
+   */
   error: string;
+
+  /**
+   * Number article in database
+   */
   total: number;
+
+  /**
+   * Limit data request
+   */
   limit = 4;
 
   constructor(private dairyServ: DairyService) { }

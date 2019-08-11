@@ -9,6 +9,9 @@ import { ColorService } from '../shared/color.service';
 })
 export class SettingsComponent implements OnInit {
 
+  /**
+   * Application colors
+   */
   colors: Array<{color: string}>;
 
   constructor(private colorServ: ColorService) { }
