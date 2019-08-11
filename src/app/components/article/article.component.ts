@@ -87,8 +87,7 @@ export class ArticleComponent implements OnInit {
     const req = this.dairyServ.delete(this.article.id).subscribe(
       response => {
         if (response.status) {
-          // close article modal
-          $(this.elem.nativeElement).find('#modelArticleDelete').modal('hide');
+          this.closeDeleteModal();
           this.article = null;
         }
         this.deleteResponse = response;
@@ -105,15 +104,22 @@ export class ArticleComponent implements OnInit {
   /**
    * Open update article modal
    */
-  openUpdateModel() {
+  openUpdateModal() {
     $(this.elem.nativeElement).find('#modelArticleUpdate').modal('show');
   }
 
   /**
    * Open delete article modal
    */
-  openDeleteModel() {
+  openDeleteModal() {
     $(this.elem.nativeElement).find('#modelArticleDelete').modal('show');
+  }
+
+  /**
+   * Close delete modal
+   */
+  closeDeleteModal() {
+    $(this.elem.nativeElement).find('#modelArticleDelete').modal('hide');
   }
 
   /**
